@@ -1,0 +1,21 @@
+# <- this is for comment TEE total file size must be larger than 2MB
+
+#TEE
+tftp 0x80400000 images/ubifs/tee.aes
+#ubi part UBI
+#ubi write 0x80400000 tee 0x600000
+nand erase.part tee
+nand write.e 0x80400000 tee 0x400000
+
+setenv LOAD_NUTTX load_nuttx_config\; nand read.e 0x8E900000 tee 0x400000\;
+setenv BOOT_NUTTX bootNuttx 0xE900000\;
+saveenv
+
+tftp 0x80400000 images/ubifs/secure_info_tee.bin
+store_secure_info teeSign 0x80400000
+
+tftp 0x80400000 images/ubifs/nuttx_config.bin
+store_nuttx_config NuttxConfig 0x80400000
+
+% <- this is end of file symbol
+

@@ -1,0 +1,29 @@
+# <- this is for comment kernel total file size must be larger than 4MB
+
+#kernel
+tftp 0x80400000 images/ubifs/uImage.aes
+
+nand erase.part KL
+nand write.e 0x80400000 KL 0x600000
+
+#setenv bootcmd nand read.e 83FFFFC0 KL $(filesize)\; bootm 83FFFFC0
+setenv LOAD_KERNEL nand read.e 803FFFC0 KL 0x600000\;
+setenv BOOT_KERNEL bootm 803FFFC0\;
+setenv AUTHENTICATE_KL authenticate KL 803FFFC0\;
+saveenv
+
+
+
+### for security booting
+
+
+
+
+tftp 0x80400000 images/ubifs/secure_info_kernel.bin
+store_secure_info kernelSign 0x80400000
+tftp 0x80400000 images/ubifs/secure_info_keySet.bin
+store_secure_info keySetSign 0x80400000
+tftp 0x80400000 images/ubifs/keySet.bin
+store_secure_info keySet 0x80400000
+% <- this is end of file symbol
+

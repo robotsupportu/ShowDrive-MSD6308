@@ -1,0 +1,9 @@
+# <- this is for RTPM need include the 0x500000(KL),0x400000(RFS),0x900000(MSLIB),0x400000(APP),0x100000(CONFIG) = 23MB in T3
+
+#RTPM
+#nand erase RTPM
+tftp 80400000 images/ubifs/RT_51.bin
+nand erase.part RTPM
+nand write.e 0x80400000 RTPM 0x40000
+
+% <- this is end of file symbol

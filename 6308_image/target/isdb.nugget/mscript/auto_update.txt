@@ -1,0 +1,47 @@
+# <- this is for comment / total file size must be less than 4KB
+#nand scrub
+nand erase.chip
+
+#set partition
+mstar mscript/set_partition
+
+#kernel
+mstar mscript/[[kernel
+
+#RTPM
+mstar mscript/[[RTPM
+
+
+#ROOTFS
+mstar mscript/[[ROOTFS
+
+#mslib
+mstar mscript/[[mslib
+
+#application
+mstar mscript/[[applications
+
+#CONFIG
+mstar mscript/[[config
+
+#CUSTOMER
+mstar mscript/[[customer
+
+#GINGA
+mstar mscript/[[ginga
+
+#certificate
+mstar mscript/[[certificate
+
+#tee
+mstar mscript/[[tee
+
+#config & bootargs
+mstar mscript/set_config
+
+#configure position of IP in MIU
+mstar mscript/miu_setting.txt
+
+printenv
+reset
+% <- this is end of file symbol

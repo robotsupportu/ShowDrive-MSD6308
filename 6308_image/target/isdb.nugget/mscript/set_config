@@ -1,0 +1,25 @@
+# <- this is for comment / total file size must be less than 4KB
+
+#setenv MS_MEM LX_MEM=0x2000000 EMAC_MEM=0x100000 DRAM_LEN=0x20000000 LX_MEM2=0x65F81000,0x8000000 BB_ADDR=0xDFFF000
+setenv MS_MEM LX_MEM=0xAAEA000 EMAC_MEM=0x28000 DRAM_LEN=0x18000000 LX_MEM2=0x60080000,0x4380000 BB_ADDR=0xE973000 PM51_ADDR=0xFFF0000 PM51_LEN=0x10000
+setenv sync_mmap 1
+setenv JPEG_MEM JPD_READBUFF_ADR=0xE973000 JPD_INTERBUFF_ADR=0xE9C4000 JPD_OUT_ADR=0xEFF4000
+setenv AUDIO_MEM AUDIO_S_MEM_INFO_ADR=0xAB12000 AUDIO_D_MEM_INFO_ADR=0xABD2000
+setenv GOP_MEM GOP_BUFFER_ADDR=0x64400000
+setenv GOP_SET_MUX 2:1:3:0
+setenv DynMmapID E_DFB_JPD_INTERNAL
+setenv MS_RFS ubi.mtd=UBI ubi.mtd=UBIRO ubi.mtd=UBILD root=ubi0:RFS rootfstype=ubifs ro
+#setenv MS_RFS ubi.mtd=4,2048 ubi.mtd=2,2048 root=ubi:RFS rootfstype=ubifs ro
+#setenv MS_RFS ubi.mtd=3,2048 root=ubi:RFS rootfstype=ubifs ro
+
+setenv bootargs console=ttyS0,115200 $(MS_RFS) $(MS_MEM) $(mtdparts) CLOSE_BOOTLOGO bootlogo_dfblayer=2 delaylogo=true
+setenv bootlogo_buffer E_DFB_JPD_INTERNAL
+setenv bootlogo_gopidx 1
+setenv verify y
+
+
+setenv bootcmd $(LOAD_KERNEL) $(AUTHENTICATE_KL) $(LOAD_NUTTX) $(BOOT_NUTTX) \; $(BOOT_KERNEL)
+
+saveenv
+
+% <- this is end of file symbol

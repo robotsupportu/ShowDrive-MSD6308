@@ -1,0 +1,11 @@
+# <- this is for comment / total file size must be larger than 4MB
+
+tftp 0x80400000 images/ubifs/rootfs.ubifs.tftp.00
+ubi part UBI
+ubi write 0x80400000 RFS 0x64c000 0x64c000
+
+
+tftp 0x80400000 images/ubifs/secure_info_rootfs.bin
+store_secure_info ROOTFSSign 0x80400000
+
+% <- this is end of file symbol

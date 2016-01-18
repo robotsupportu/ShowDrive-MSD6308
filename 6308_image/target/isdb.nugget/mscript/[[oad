@@ -1,0 +1,9 @@
+# <- this is for OAD need include the 0x500000(KL),0x400000(RFS),0x900000(MSLIB),0x400000(APP),0x100000(CONFIG) = 23MB in T3
+
+#OAD
+#nand erase OAD
+tftp 80400000 images/ubifs/OAD.ubifs
+ubi part UBI
+ubi write 0x80400000 oad 0x3A00000
+
+% <- this is end of file symbol

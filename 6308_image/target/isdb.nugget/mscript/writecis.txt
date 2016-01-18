@@ -1,0 +1,6 @@
+tftp 0x80400000 images/ubifs/NANDINFO.nni
+
+tftp 0x80500000 images/ubifs/PAIRPAGEMAP_v2.ppm
+
+ncisbl 0x80400000 0x80500000
+

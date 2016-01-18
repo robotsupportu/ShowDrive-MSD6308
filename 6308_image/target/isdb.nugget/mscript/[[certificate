@@ -1,0 +1,9 @@
+# <- this is for comment config total file size must be larget than 4MB
+
+#config
+tftp 0x80400000 images/ubifs/certificate.ubifs
+ubi part UBIRO
+ubi write 0x80400000 certificate 0x300000
+
+% <- this is end of file symbol
+

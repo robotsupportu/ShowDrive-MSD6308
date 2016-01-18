@@ -1,0 +1,35 @@
+#!/bin/sh
+
+#show hint for using default mide configure
+echo -e "\033[33;1m-------------------------------------------------"
+echo "If any problems about MIDE,"
+echo "please direct it to us: MIDE@mstarsemi.com "
+echo "Thank you very much."
+echo -e "-------------------------------------------------\033[0m"
+
+APP_DIR=`which $0`
+APP_DIR=`dirname $APP_DIR`
+
+####Check configure file & update
+if [ -d ~/.codeblocks ];then
+        if [  ! -f ~/.codeblocks/default.conf ]; then
+                if [ -f $APP_DIR/default.conf ];then
+                        cp $APP_DIR/default.conf ~/.codeblocks/
+                fi
+        fi
+else
+        if [ -f $APP_DIR/default.conf ];then
+                mkdir ~/.codeblocks
+                cp $APP_DIR/default.conf ~/.codeblocks/
+        fi
+
+fi
+
+
+export LANG=en_US.UTF-8
+export LD_LIBRARY_PATH=$APP_DIR:/usr/lib:/usr/local/lib
+
+echo "$1" 
+echo "$2" 
+
+$APP_DIR/SysMakeEngine $1 $2 

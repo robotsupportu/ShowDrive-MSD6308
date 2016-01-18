@@ -1,0 +1,15 @@
+# <- this is for comment config total file size must be larget than 4MB
+
+#config
+tftp 0x80400000 images/ubifs/config.ubifs
+ubi part UBI
+ubi write 0x80400000 CONFIG 0x600000
+
+#tftp 0x80400000 images/ubifs/secure_info_config.bin
+#store_secure_info configSign 0x80400000
+#tftp 0x80400000 images/ubifs/secure_info_keySet.bin
+#store_secure_info keySetSign 0x80400000
+#tftp 0x80400000 images/ubifs/keySet.bin
+#store_secure_info keySet 0x80400000
+% <- this is end of file symbol
+

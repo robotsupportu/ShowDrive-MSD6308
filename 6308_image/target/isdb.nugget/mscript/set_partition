@@ -1,0 +1,36 @@
+# <- this is for comment / total file size must be less than 4KB
+
+# THIS IS 256MB NAND layout for application-rich platform
+
+dynpart edb64M-nand:0x500000(UBIRO),0x600000(KL),0x5600000(UBI),0x3C00000(MSLIB),0x1E00000(APP),0x80000(RTPM),0x400000(tee),-(NA)
+#dynpart edb64M-nand:0x40000(NPT),0x40000(KL_BP),0x500000(KL),0xCC00000(UBI),-(NA)
+
+saveenv
+ubi part UBIRO
+
+ubi create certificate  0x300000
+
+ubi part UBI
+
+
+#ubi partition minimal 4MB
+
+#16MB c=121
+ubi create RFS 0x700000
+
+#56MB c=501
+#ubi create MSLIB 0x4E00000
+
+#4MB c=26
+ubi create CONFIG 0x600000
+
+ubi create customer 0x600000
+ubi create customerbackup 0x400000
+ubi create GINGA  0x400000
+ubi create oad 0x3200000
+#106MB c=834
+#ubi create APP 0x2C00000
+
+
+
+% <- this is end of file symbol

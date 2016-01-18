@@ -1,0 +1,12 @@
+# <- this is for comment applications total file size must be larger than 4MB
+
+tftp 0x80400000 images/ubifs/applications.sqfs
+nand erase APP
+nand write.e 0x80400000 APP 0x1C00000
+# reserved 2MB for bad block(30MB*3% + 2 block => 2MB bad block => 28MB size)
+
+
+tftp 0x80400000 images/ubifs/secure_info_app.bin
+store_secure_info applicationsSign 0x80400000
+
+% <- this is end of file symbol

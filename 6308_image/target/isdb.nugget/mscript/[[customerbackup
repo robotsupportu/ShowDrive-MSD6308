@@ -1,0 +1,9 @@
+# <- this is for comment config total file size must be larget than 4MB
+
+#config
+tftp 0x80400000 images/ubifs/customerbackup.ubifs
+ubi part UBI
+ubi write 0x80400000 customerbackup 0x400000
+
+% <- this is end of file symbol
+

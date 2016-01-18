@@ -1,0 +1,14 @@
+# <- this is for comment mslib total file size must be larger than 4MB
+
+tftp 0x80400000 images/ubifs/mslib.sqfs
+nand erase MSLIB
+
+nand write.e 0x80400000 MSLIB 0x3900000
+# reserved 2MB for bad block(60MB*3% + 2 block = 2100KB => 3MB bad block => 57MB size)
+
+
+
+tftp 0x80400000 images/ubifs/secure_info_mslib.bin
+store_secure_info mslibSign 0x80400000
+
+% <- this is end of file symbol

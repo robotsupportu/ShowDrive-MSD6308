@@ -1,0 +1,9 @@
+# <- this is for comment ginga total file size must be larget than 4MB
+
+#ginga
+tftp 0x80400000 images/ubifs/ginga.ubifs
+ubi part UBI
+ubi write 0x80400000 GINGA 0x400000
+
+% <- this is end of file symbol
+
